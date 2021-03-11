@@ -1,0 +1,97 @@
+@font-face{
+    font-family: fontH;
+    src: url(../../fonts/brush\ script\ mt\ kursiv.ttf)
+}
+
+.calendar{
+    width: 100%;
+   text-align: center;
+}
+.calendarTable{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.calendar > * {
+    text-align: center;
+}
+.calendar tr{
+    padding-left: 0;
+    padding-right: 0;
+}
+.calendar tr td{
+    padding:0;
+    text-align: center;
+    height: 30px;
+    width: 33px;
+    cursor: pointer;
+    border: 3px solid white;
+    border-radius: 100%;
+}
+.calendar tr td:hover{
+    border: 3px solid rgba(255, 0, 0, 0.295);
+    border-radius: 100%;
+}
+.calendar tr td:focus{
+    border: 3px solid red;
+    border-radius: 100%;
+
+}
+.calendar tr td:empty:hover{
+    border: 0;
+    cursor: default;
+}
+.h1Todolist{
+    font-family: fontH;
+    color: white;
+    background-color: red;
+    margin: 1px;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.buttonCalendar, .selectCalendarMonth, .selectCalendarYear{
+    background: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none !important;
+    border: 1px solid red;
+    border-radius: 6px;
+    margin: 5px;
+    height: 25px;
+    font-size: 1em;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+	text-align-last: center
+}
+.selectCalendarMonth{
+    width: 110px;
+}
+.selectCalendarYear{
+    width: 70px;
+}
+.selectCalendar option {
+    text-align: left;
+}
+.buttonCalendar:hover, .selectCalendarMonth:hover, .selectCalendarYear:hover{
+    background-color: rgba(255, 0, 0, 0.055);
+}
+.buttonCalendar{
+    width: 35px;
+}
+table tbody > *{
+    font-family: fontH;
+    font-size: large;
+}
+thead > *{
+    cursor: default;
+}
+
+.today{
+    background-color: red;
+    border-radius: 6px;
+    color: white;
+}

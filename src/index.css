@@ -1,0 +1,361 @@
+@font-face{
+  font-family: fontH;
+  src: url(../src/fonts/brush\ script\ mt\ kursiv.ttf);
+}
+body {
+  background-color: darkgray;
+}
+/*s
+#loginWindow {
+  width: 350px;
+  height: 570px;
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3%;
+  padding: 15px;
+}
+*/
+#toDoListWindow {
+  width: 350px;
+  height: 570px;
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3%;
+  padding: 15px;
+}
+
+.inputForEnterOrRegistration {
+  position: relative;
+  border-bottom: 3px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: 1.3em;
+  height: 40px;
+  width: 270px;
+  margin: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Helvetica, sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 3px;
+}
+
+.inputForEnterOrRegistration:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.inputForEnterOrRegistration:focus {
+  border-bottom: 3px solid #ff0000;
+}
+
+#logo {
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.buttonForEnterOrRegistration {
+  background-color: #ff0000;
+  color: white;
+  padding: 4px;
+  width: 290px;
+  border-radius: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  font-family: fontH, cursive;
+  font-size: 2em;
+  border: none;
+}
+
+.buttonForEnterOrRegistration:active {
+  background-color: #d10000;
+  color: white;
+}
+
+#buttonForEnterGoogle {
+  padding: 3px;
+  width: 115px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.2em;
+  margin-top: 5px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.377);
+}
+
+#buttonForEnterGoogle:hover {
+  background-color: #00000013;
+  border: 1px solid black;
+}
+
+#textBlockOnMainPage {
+  margin-top: 15px;
+}
+
+#linkForRegistration:hover,
+#backOnMainPage:hover {
+  color: #ff0000;
+}
+/*
+#registrationWindow {
+  width: 350px;
+  height: 570px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3%;
+  padding: 15px;
+  background-color: white;
+}
+*/
+#root{
+  width: 350px;
+  height: 570px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3%;
+  padding: 15px;
+  background-color: white;
+}
+#loginPageHeader {
+  text-align: center;
+  color: #ff0000;
+  font-size: 4.8em;
+  padding-top: 0;
+  margin-top: 0;
+  font-family: fontH; 
+  text-shadow: white 1px 1px 0, white -1px -1px 0, 
+  white -1px 1px 0, white 1px -1px 0;
+  font-weight: bolder;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  top: -60px;
+}
+
+#linkForRegistration {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: #df0000;
+  font-size: 1em;
+  height: min-content;
+  font-family: Helvetica, sans-serif;
+}
+
+.signUpBlock {
+  padding-top: 20px;
+  padding-bottom: 25px;
+  position: relative;
+  display: block;
+  top: -75px;
+}
+
+#backOnMainPage {
+  position: relative;
+  top: -75px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.2em;
+}
+
+.RegBlock {
+  padding-top: 20px;
+  padding-bottom: 25px;
+  position: relative;
+  display: block;
+  position: relative;
+  top: -75px;
+}
+
+#googleLogo {
+  height: 15px;
+  fill-opacity: 0.5;
+}
+
+#blockWithGoogleSignAndRegistration {
+  display: block;
+  text-align: center;
+  position: relative;
+  top: -80px;
+}
+
+#textForGoogleSign {
+  color: #000000b7;
+  position: relative;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.1em;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+#textBlockOnMainPage {
+  color: #000000b7;
+  position: relative;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.1em;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.buttonPlus {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  border: none;
+  color: white;
+  background-color: #ff0000;
+  font-family: fontH, cursive;
+  font-size: 1.5em;
+  padding: 0;
+  position:relative;
+  float:right;
+  bottom: 25px;
+  visibility: visible;
+}
+
+.blockList{
+  height: 250px;
+  overflow: auto;
+  padding: 10px;
+  padding-left: 5px;
+}
+.buttonPlus:hover {
+  background-color: #d10000;
+}
+.blockWithBackAndSave{
+  background-color: rgba(255, 0, 0, 0.065);
+  font-family: fontH;
+  margin: 1px;
+  border-radius: 25px;
+  height: max-content
+}
+.buttonBackToDo{
+  background: white;
+  border: none;
+  color: red;
+  margin: 10px;
+  position:relative;
+  float:left;
+  border: 1px solid red;
+  border-radius: 15px;
+  width: 35px;
+  height: 35px;
+}
+.buttonBackToDo:hover,
+.buttonSaveToDo:hover{
+  background-color: red;
+  color: white;
+}
+
+.buttonSaveToDo{
+  background: white;
+  border: none;
+  color: red;
+  margin: 10px;
+  position:relative;
+  float:right;
+  border: 1px solid red;
+  border-radius: 15px;
+  width: 35px;
+  height: 35px;
+}
+.NameOfTask{
+  border-radius: 15px;
+  background: white;
+  width:180px;
+  height:30px;
+  margin: 10px;
+  font-weight: 700;
+  border: 2px solid red;
+  font-size: 1.2em;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  display: inline-block;
+}
+.blockWithBackAndSave div{
+  display: flex;
+}
+
+.descrOfTask{
+  height: 150px;
+  width: 295px;
+  font-size: 1.1em;
+  font-family: Helvetica, sans-serif;
+  border-radius: 10px;
+  border: 1px solid red;
+  margin: 8px;
+  resize: none;
+  padding: 8px;
+  background-color: white;
+}
+.listDo{
+  display: inline-block;
+  margin: 0;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.3em;
+ 
+}
+.listDo:hover{
+  border-radius: 15px;
+  background-color: rgba(255, 0, 0, 0.13);
+}
+.checkButYes{
+  display: inline-block;
+  color: green;
+  border: none;
+  background: none;
+  font-size: 1.1em;
+  margin: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.checkButNo{
+  display: inline-block;
+  color: red;
+  border: none;
+  background: none;
+  font-size: 1.1em;
+  margin: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+.action-btn{
+  display: inline-block;
+  
+}
+.editBtn{
+  border: 0;
+  background: none;
+  font-size: 1.1em;
+  width: 265px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
