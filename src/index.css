@@ -294,7 +294,7 @@ body {
   display: inline-block;
 }
 .blockWithBackAndSave div{
-  display: flex;
+  display: flexbox;
 }
 
 .descrOfTask{
@@ -308,6 +308,7 @@ body {
   resize: none;
   padding: 8px;
   background-color: white;
+
 }
 .listDo{
   display: inline-block;

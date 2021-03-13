@@ -12,7 +12,12 @@ const Task = ({task, ...props}) => {
     const className = 'task' + (task.done ? 'task-done' : '');
     return(
         <div className={className}>
-            <p className="listDo"><ActionBtn></ActionBtn><button className="editBtn" onClick={props.handleMouseIn}>{task.title} </button></p>
+            <div className="listDo">
+                    <ActionBtn></ActionBtn>
+                    <button className="editBtn" onClick={props.handleMouseIn}>
+                        {task.title}
+                    </button>
+            </div>
             
         </div>
     );

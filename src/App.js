@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Task from './components/Task/Task.js';
 import TaskInput from './components/Task/Taskinput.js';
-import AddOrUpdate from './components/Task/AddOrUpdate.js';
+import TaskUpdate from './components/Task/Taskupdate.js';
 
 export default class App extends Component{
   constructor(props){
@@ -57,7 +57,7 @@ export default class App extends Component{
     var proveder = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(proveder).then(
       function () {
-        window.location="index.html";
+        window.location={App};
       }).catch(function(error){
         var errorMessage = error.errorMessage;
         alert(errorMessage);
@@ -95,7 +95,7 @@ export default class App extends Component{
     this.setState({
       tasks: this.state.tasks.map(task => 
         {if(updatedTask.id === task.id) 
-          return {id: task.id, title: updatedTask.title, done: task.done, description: updatedTask.description}; 
+          return {id: task.id, title: document.getElementsByClassName("NameOfTask"), done: task.done, description: document.getElementsByClassName('descrOfTask')}; 
         else 
           return task
         }
@@ -106,7 +106,7 @@ export default class App extends Component{
     this.setState({
       tasks: this.state.tasks.map(task => {
         if(saveTask.id === task.id) 
-          return {id: task.id, title: document.getElementsByClassName(''), done: task.done, description: document.getElementsByClassName('')}; 
+          return {id: task.id, title: document.getElementsByClassName('NameOfTask'), done: task.done, description: document.getElementsByClassName('descrOfTask')}; 
         else 
           return task})
     })
@@ -128,20 +128,20 @@ export default class App extends Component{
     />
       <div className="blockList">
         <div className="blockWithTasks" style={tooltipStyle2}>
-          {[...activeTasks, ...doneTasks].map(task => <Task doneTasks={() => this.doneTasks(task.id)}
-          deleteTask={() => this.deleteTask(task.id)}
-          updateTask={() => this.updateTask(task)}
-           task={task} 
-           key={task.id}
-           handleMouseIn={this.handleMouseIn.bind(this)}
+          {[...activeTasks, ...doneTasks].map(task => 
+          <Task doneTasks={() => this.doneTasks(task.id)}
+            deleteTask={() => this.deleteTask(task.id)}
+            updateTask={() => this.updateTask(task)}
+              task={task} 
+              key={task.id}
+              handleMouseIn={this.handleMouseIn.bind(this)}
            ></Task>)}
         </div>
           <div className="blockWithBackAndSave" style={tooltipStyle}>
             <div>
               <button className="buttonBackToDo" onClick={this.handleMouseOut.bind(this)}>&#9668;</button>
-              <TaskInput onClick={this.updateTask} addTask={this.addTask()}></TaskInput>
+              <TaskInput></TaskInput>
             </div>
-          <textarea placeholder="Description" className="descrOfTask"></textarea>
           </div>
         
       </div>
