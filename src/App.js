@@ -146,7 +146,7 @@ export default class App extends Component{
           <div className="blockWithBackAndSave" style={tooltipStyle3}>
             <div>
               <button className="buttonBackToDo" onClick={this.handleMouseOut1.bind(this)}>&#9668;</button>
-              <TaskUpdate task={tasks} updateTask={(task) => this.updatedTask(task)}></TaskUpdate>
+              <TaskUpdate task={task} updateTask={(task) => this.updatedTask(task)}></TaskUpdate>
             </div>
           </div>
         
