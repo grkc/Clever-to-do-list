@@ -6,13 +6,19 @@ class TaskInput extends React.Component{
         this.state={
             input: '',
             inputTextArea: '',
+            date: this.props.date,
         };
     }
+    
     addTask = () => {
-        const {input} = this.state;
+        const input = this.state.input;
+        const inputTextArea = this.state.inputTextArea;
+        const date = this.props.date;
         if(input){
-            this.props.addTask(input);
-            this.setState({input: '', textarea: ''});
+            this.props.addTask(input, inputTextArea, date);
+            this.setState({input: '', textarea: '', date: new Date()});
+            this.input.value ='';
+            this.inputTextArea.value ='';
         }
     };
     updateTask = () => {
@@ -39,6 +45,7 @@ class TaskInput extends React.Component{
                     onChange={this.inputChange} 
                     value= {input.input}
                     className="NameOfTask"
+                    ref={ input => this.input = input}
                     >
                 </input>
                 <button onClick={this.addTask} className="buttonSaveToDo">&#10004;</button>
@@ -49,6 +56,7 @@ class TaskInput extends React.Component{
                     onChange={this.inputChangeArea}  
                     placeholder="Description" 
                     className="descrOfTask"
+                    ref={ inputTextArea => this.inputTextArea = inputTextArea}
                 ></textarea>
             </div>
             

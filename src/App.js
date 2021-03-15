@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Task from './components/Task/Task.js';
 import TaskInput from './components/Task/Taskinput.js';
-import TaskUpdate from './components/Task/Taskupdate.js';
+import TaskUpdate from './components/Task/Taskupdate.js'
 
 export default class App extends Component{
   constructor(props){
@@ -18,11 +18,11 @@ export default class App extends Component{
       password: '',
       hasAccount: false,
       tasks: [
-        {id: 0, title: '0000', done: false, description: '0aa'},
-        {id: 1, title: '1111', done: true, description: '01aa'},
-        {id: 2, title: '2222', done: true, description: '02aa'},
-        {id: 3, title: '3333', done: false, description: '03aa'},
-        {id: 4, title: '4444', done: false, description: '04aa'}
+        {id: 0, title: '0000', done: false, description: '0aa', date: new Date('Dec 01 2020 00:00:00 GMT+0300')},
+        {id: 1, title: '1111', done: true, description: '01aa', date: new Date('Dec 01 2021 00:00:00 GMT+0300')},
+        {id: 2, title: '2222', done: true, description: '02aa', date: new Date('Dec 01 2022 00:00:00 GMT+0300')},
+        {id: 3, title: '3333', done: false, description: '03aa', date: new Date('Dec 01 2023 00:00:00 GMT+0300')},
+        {id: 4, title: '4444', done: false, description: '04aa', date: new Date('Dec 01 2024 00:00:00 GMT+0300')},
       ],
       id: 5,
     };
@@ -32,11 +32,15 @@ export default class App extends Component{
       tasks: this.state.tasks.filter(x => x.id !== id)
     });
   };
-
+  handleMouseIn1() {
+    this.setState({ show: true })
+  };
+  handleMouseOut1() {
+    this.setState({ show: false })
+  };
   handleMouseIn() {
     this.setState({ show: true })
   };
-
   handleMouseOut() {
     this.setState({ show: false })
   };
@@ -57,7 +61,7 @@ export default class App extends Component{
     var proveder = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(proveder).then(
       function () {
-        window.location={App};
+        window.location='/';
       }).catch(function(error){
         var errorMessage = error.errorMessage;
         alert(errorMessage);
@@ -75,40 +79,33 @@ export default class App extends Component{
    this.setState({
      tasks: this.state.tasks.map(task => {
        if(id === task.id) 
-         return {id: task.id, title: task.title, done: !task.done, description: task.description}; 
+         return {id: task.id, title: task.title, done: !task.done, description: task.description, date: task.date}; 
        else 
         return task})
    });
   };
-  addTask = (task, description) => {
+  addTask = (task, description, date) => {
     this.setState({
       tasks: [...this.state.tasks, {
         id: this.state.id,
         title: task,
         done: false,
         description: description,
+        date: date,
       }],
       id: this.state.id + 1
     });
   }
+ 
   updateTask = updatedTask => {
     this.setState({
       tasks: this.state.tasks.map(task => 
         {if(updatedTask.id === task.id) 
-          return {id: task.id, title: document.getElementsByClassName("NameOfTask"), done: task.done, description: document.getElementsByClassName('descrOfTask')}; 
+          return {id: task.id, title: task.title, done: task.done, description: document.getElementsByClassName('descrOfTask'), date: task.date}; 
         else 
           return task
         }
       )
-    })
-  }
-  saveTask = saveTask => {
-    this.setState({
-      tasks: this.state.tasks.map(task => {
-        if(saveTask.id === task.id) 
-          return {id: task.id, title: document.getElementsByClassName('NameOfTask'), done: task.done, description: document.getElementsByClassName('descrOfTask')}; 
-        else 
-          return task})
     })
   }
   render(){
@@ -117,30 +114,39 @@ export default class App extends Component{
     const doneTasks = tasks.filter(task => task.done);
     const tooltipStyle = {display: this.state.show ? 'block' : 'none'};
     const tooltipStyle2 = {display: this.state.show ? 'none' : 'block'};
+    const tooltipStyle3 = {display: this.state.show ? 'block' : 'none'};
+
     const {date} = this.state;
     const { hasAccount } = this.state;
 
     return(hasAccount ? 
     (<div className='mainPageToDo'> 
-    {date && <p>Выбранная дата: {date.toLocaleDateString()}</p>}
     <Calendar
         onChange = {this.handleDateChange}
     />
       <div className="blockList">
         <div className="blockWithTasks" style={tooltipStyle2}>
-          {[...activeTasks, ...doneTasks].map(task => 
+          {date && <p id="selectedData">{date.toLocaleDateString()}</p>}
+          {[...activeTasks, ...doneTasks]
+          .filter(task => typeof date === 'undefined' || task.date.toLocaleDateString() === date.toLocaleDateString())
+          .map((task) => 
           <Task doneTasks={() => this.doneTasks(task.id)}
             deleteTask={() => this.deleteTask(task.id)}
-            updateTask={() => this.updateTask(task)}
               task={task} 
               key={task.id}
-              handleMouseIn={this.handleMouseIn.bind(this)}
+              handleMouseIn1={this.handleMouseIn1.bind(this)}
            ></Task>)}
         </div>
           <div className="blockWithBackAndSave" style={tooltipStyle}>
             <div>
               <button className="buttonBackToDo" onClick={this.handleMouseOut.bind(this)}>&#9668;</button>
-              <TaskInput></TaskInput>
+              <TaskInput date={date} addTask={(task, description, date) => this.addTask(task, description, date)}></TaskInput>
+            </div>
+          </div>
+          <div className="blockWithBackAndSave" style={tooltipStyle3}>
+            <div>
+              <button className="buttonBackToDo" onClick={this.handleMouseOut1.bind(this)}>&#9668;</button>
+              <TaskUpdate task={tasks} updateTask={(task) => this.updatedTask(task)}></TaskUpdate>
             </div>
           </div>
         

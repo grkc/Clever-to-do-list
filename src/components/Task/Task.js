@@ -14,11 +14,10 @@ const Task = ({task, ...props}) => {
         <div className={className}>
             <div className="listDo">
                     <ActionBtn></ActionBtn>
-                    <button className="editBtn" onClick={props.handleMouseIn}>
+                    <button className="editBtn" onClick={props.handleMouseIn1}>
                         {task.title}
                     </button>
             </div>
-            
         </div>
     );
 };
