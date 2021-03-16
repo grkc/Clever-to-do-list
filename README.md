@@ -5,26 +5,29 @@
 ## How to run the app
 
 1. Download or clone project to desktop
+
 $ git clone (https://github.com/grkc/Innowise-Lab-Internship-Level-1-Clever-to-do-list).
 
 2. Go to the directory with project
 
 3. Install npm modules
+
 '$ npm install'
 
 4. Start app
+
 $ npm start
 
 ## Application stack
 
-*firebase
+-firebase
 
-*react-router-dom
+-react-router-dom
 
-*react-bootstrap
+-react-bootstrap
 
-*Prettier
+-Prettier
 
-*ESLint
+-ESLint
 
-*firebase-auth
+-firebase-auth
