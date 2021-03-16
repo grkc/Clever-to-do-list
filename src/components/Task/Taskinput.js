@@ -6,29 +6,15 @@ class TaskInput extends React.Component{
         this.state={
             input: '',
             inputTextArea: '',
-            date: this.props.date,
         };
     }
     
-    addTask = () => {
-        const input = this.state.input;
-        const inputTextArea = this.state.inputTextArea;
-        const date = this.props.date;
-        if(input){
-            this.props.addTask(input, inputTextArea, date);
-            this.setState({input: '', textarea: '', date: new Date()});
-            this.input.value ='';
-            this.inputTextArea.value ='';
-        }
+    saveTask = () => {
+        this.props.saveTask(this.input.value, this.inputTextArea.value);
+        this.input.value ='';
+        this.inputTextArea.value ='';
     };
-    updateTask = () => {
-        const {input} = this.state;
-        const {inputTextArea} = this.state.inputTextArea;
-        if(input){
-            this.props.updateTask(input.input, inputTextArea);
-            this.setState({input: document.getElementsByClassName("NameOfTask").value, inputTextArea: document.getElementsByClassName("descrOfTask").value });
-        }
-    }
+
     inputChange = event => {
         this.setState({input:event.target.value});
     };
@@ -48,7 +34,7 @@ class TaskInput extends React.Component{
                     ref={ input => this.input = input}
                     >
                 </input>
-                <button onClick={this.addTask} className="buttonSaveToDo">&#10004;</button>
+                <button onClick={this.saveTask} className="buttonSaveToDo">&#10004;</button>
             
             </div>
             <textarea 

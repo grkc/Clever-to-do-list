@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Task from './components/Task/Task.js';
 import TaskInput from './components/Task/Taskinput.js';
-import TaskUpdate from './components/Task/Taskupdate.js'
 
 export default class App extends Component{
   constructor(props){
@@ -27,6 +26,12 @@ export default class App extends Component{
       id: 5,
     };
   }
+  selectedTask = task => {
+    this.setState({
+      selectedTask: task, 
+      show: true,
+    });
+  };
   deleteTask = id => {
     this.setState({
       tasks: this.state.tasks.filter(x => x.id !== id)
@@ -59,10 +64,9 @@ export default class App extends Component{
   handleDateChange = date => this.setState({date});
   GoogleLogin = () => {
     var proveder = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(proveder).then(
-      function () {
-        window.location='/';
-      }).catch(function(error){
+    firebase.auth().signInWithPopup(proveder).then(response => {
+      this.setState({hasAccount: true});
+    }).catch(function(error){
         var errorMessage = error.errorMessage;
         alert(errorMessage);
       })
@@ -84,28 +88,39 @@ export default class App extends Component{
         return task})
    });
   };
-  addTask = (task, description, date) => {
+  addTask = (title, description) => {
+    console.log('ADD')
     this.setState({
       tasks: [...this.state.tasks, {
         id: this.state.id,
-        title: task,
+        title: title,
         done: false,
         description: description,
-        date: date,
+        date: this.state.date,
       }],
-      id: this.state.id + 1
+      id: this.state.id + 1,
+      show: false,
     });
-  }
+    
+    }
  
-  updateTask = updatedTask => {
+  updateTask = (title, description) => {
     this.setState({
       tasks: this.state.tasks.map(task => 
-        {if(updatedTask.id === task.id) 
-          return {id: task.id, title: task.title, done: task.done, description: document.getElementsByClassName('descrOfTask'), date: task.date}; 
+        {if(this.state.selectedTask.id === task.id) 
+          return {
+            id: task.id, 
+            title: title, 
+            done: task.done, 
+            description: description,
+            date: task.date,
+          }; 
         else 
           return task
         }
-      )
+      ),
+      selectedTask: null,
+      show: false,
     })
   }
   render(){
@@ -114,7 +129,6 @@ export default class App extends Component{
     const doneTasks = tasks.filter(task => task.done);
     const tooltipStyle = {display: this.state.show ? 'block' : 'none'};
     const tooltipStyle2 = {display: this.state.show ? 'none' : 'block'};
-    const tooltipStyle3 = {display: this.state.show ? 'block' : 'none'};
 
     const {date} = this.state;
     const { hasAccount } = this.state;
@@ -134,22 +148,19 @@ export default class App extends Component{
             deleteTask={() => this.deleteTask(task.id)}
               task={task} 
               key={task.id}
-              handleMouseIn1={this.handleMouseIn1.bind(this)}
+              handleMouseIn={this.selectedTask.bind(this)}
            ></Task>)}
         </div>
           <div className="blockWithBackAndSave" style={tooltipStyle}>
             <div>
               <button className="buttonBackToDo" onClick={this.handleMouseOut.bind(this)}>&#9668;</button>
-              <TaskInput date={date} addTask={(task, description, date) => this.addTask(task, description, date)}></TaskInput>
+              {
+              this.state.selectedTask != null 
+              ? <TaskInput saveTask={this.updateTask}></TaskInput> 
+              : <TaskInput saveTask={this.addTask}></TaskInput>
+              }
             </div>
           </div>
-          <div className="blockWithBackAndSave" style={tooltipStyle3}>
-            <div>
-              <button className="buttonBackToDo" onClick={this.handleMouseOut1.bind(this)}>&#9668;</button>
-              <TaskUpdate task={task} updateTask={(task) => this.updatedTask(task)}></TaskUpdate>
-            </div>
-          </div>
-        
       </div>
       <button className="buttonPlus" style={tooltipStyle2} onClick={this.handleMouseIn.bind(this)}>+</button>
     </div>) 
